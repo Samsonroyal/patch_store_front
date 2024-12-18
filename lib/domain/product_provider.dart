@@ -59,5 +59,17 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void filterProductsBySearch(String query) {
+    if (query.isEmpty) {
+      _filteredProducts = products;
+    } else {
+      _filteredProducts = products.where((product) {
+        return product.title.toLowerCase().contains(query.toLowerCase()) ||
+            product.category.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    }
+    notifyListeners();
+  }
+
 
 }

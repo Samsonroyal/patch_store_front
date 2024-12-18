@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../domain/product_provider.dart';
 
 class AppSearchBar extends StatefulWidget {
   const AppSearchBar({super.key});
@@ -8,6 +11,8 @@ class AppSearchBar extends StatefulWidget {
 }
 
 class _AppSearchBarState extends State<AppSearchBar> {
+  TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,24 +22,39 @@ class _AppSearchBarState extends State<AppSearchBar> {
         height: 56,
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.grey),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  offset: const Offset(0, 2),
+                  blurRadius: 4
+              )
+            ]
         ),
-        child: const Row(
+        child:  Row(
           children: [
-            Icon(
+            const Icon(
               Icons.search,
               color: Colors.grey,
               size: 24.0,
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            Text(
-              "What are you looking for?",
-              style: TextStyle(color: Colors.grey, fontSize: 16),
-            )
+            Expanded(
+              child: TextField(
+                controller: _controller,
+                onChanged: (value) {
+                  context.read<ProductProvider>().filterProductsBySearch(value);
+                },
+                decoration: const InputDecoration(
+                  hintText: "What are you looking for?",
+                  hintStyle: TextStyle(color: Color(0xFF717171)),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
           ],
         ),
       ),
