@@ -21,12 +21,12 @@ class ProductItem extends StatelessWidget {
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4), // Border radius of 4px
+        borderRadius: BorderRadius.circular(4), // Added Border radius of 4px
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image with fixed height
+          
           ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(4),
