@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_front/pages/discover_screen/components/search_bar/search_bar.dart';
-
-
 import '../../domain/product_provider.dart';
 import 'components/category_button_row/category_buttons.dart';
 import 'components/horizontal_list/categories.dart';
@@ -46,7 +43,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   return  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 15,),
+                      const SizedBox(height: 15,),
                       const Text("Choose from any category",
                         style: TextStyle(
                           fontSize: 18,
@@ -72,7 +69,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           ),
         ),
 
-        Positioned(
+        const Positioned(
           top: 50,
             right: 16,
             left: 16,

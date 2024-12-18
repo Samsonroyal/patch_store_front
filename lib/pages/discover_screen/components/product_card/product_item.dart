@@ -7,7 +7,8 @@ class ProductItem extends StatelessWidget {
   final String productCategory;
   final String productDescription;
 
-  const ProductItem({super.key,
+  const ProductItem({
+    super.key,
     required this.productName,
     required this.productImageUrl,
     required this.productPrice,
@@ -29,28 +30,34 @@ class ProductItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 140,
-                  child: Image.network(productImageUrl, fit: BoxFit.contain, width: double.infinity)
-              ),
+                  height: 140,
+                  child: Image.network(productImageUrl,
+                      fit: BoxFit.contain, width: double.infinity)),
               const SizedBox(height: 8),
               Text(
                 productName,
-                style: const TextStyle(fontWeight: FontWeight.bold,),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
-                  productDescription,maxLines: 2, overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontWeight: FontWeight.normal, color: Color(0xFF7C7C7C),),
+                productDescription,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontWeight: FontWeight.normal,
+                  color: Color(0xFF7C7C7C),
                 ),
+              ),
               const SizedBox(height: 4),
               Text('\$${productPrice.toStringAsFixed(2)}',
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
         ),
-
       ),
     );
   }

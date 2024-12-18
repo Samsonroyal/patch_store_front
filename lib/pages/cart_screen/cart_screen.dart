@@ -13,9 +13,13 @@ class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final cartProvider = Provider.of<CartProvider>(context, listen: false);
-      cartProvider.fetchCartItems();
+
+      if (cartProvider.cartItems.isEmpty && !cartProvider.isLoading) {
+        cartProvider.fetchCartItems();
+      }
     });
   }
 
@@ -23,12 +27,6 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         title: const Text(
           "Cart",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
