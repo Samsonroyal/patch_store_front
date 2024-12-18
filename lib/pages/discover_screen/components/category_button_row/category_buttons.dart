@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_front/domain/product_provider.dart';
+import 'package:store_front/domain/product_domain/product_provider.dart';
 
 import 'button_item.dart';
 

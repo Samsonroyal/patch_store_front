@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../domain/product_provider.dart';
+import '../../../../domain/product_domain/product_provider.dart';
 
 class AppSearchBar extends StatefulWidget {
   const AppSearchBar({super.key});

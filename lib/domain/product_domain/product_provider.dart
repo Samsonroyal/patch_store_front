@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:store_front/domain/product_service.dart';
-import '../model/product.dart';
+import 'package:store_front/domain/product_domain/product_service.dart';
+import '../../model/product.dart';
 
 class ProductProvider with ChangeNotifier {
   final ProductService productService;

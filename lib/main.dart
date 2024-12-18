@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'domain/cart_domain/cart_provider.dart';
 import 'domain/cart_domain/cart_service.dart';
-import 'domain/product_provider.dart';
-import 'domain/product_service.dart';
+import 'domain/product_domain/product_provider.dart';
+import 'domain/product_domain/product_service.dart';
 import 'home.dart';
 
 void main() {

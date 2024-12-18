@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_front/domain/product_provider.dart';
+import 'package:store_front/domain/product_domain/product_provider.dart';
 
 class CategoryFilter extends StatefulWidget {
   final List<String> categories;
