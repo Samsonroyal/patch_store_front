@@ -18,80 +18,84 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4), // Added Border radius of 4px
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(4),
-              topRight: Radius.circular(4),
-            ),
-            child: Image.network(
-              productImageUrl,
-              height: 100, // Fixed image height
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(4), // Ensure no overflow beyond card
+      child: Card(
+        elevation: 2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Image Section
+            SizedBox(
+              height: 100, // Slightly smaller image
               width: double.infinity,
-              fit: BoxFit.cover,
+              child: Image.network(
+                productImageUrl,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          // Spacer to handle padding inside card
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Product Category
-                Text(
-                  productCategory.toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 10,
-                    color: Colors.blueAccent,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+            // Content Section
+            Expanded(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment:
+                      MainAxisAlignment.spaceEvenly, // Space out elements
+                  children: [
+                    // Category
+                    Flexible(
+                      child: Text(
+                        productCategory.toUpperCase(),
+                        style: const TextStyle(
+                          fontSize: 9,
+                          color: Colors.blueAccent,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    // Product Name
+                    Flexible(
+                      child: Text(
+                        productName,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    // Description
+                    Flexible(
+                      child: Text(
+                        productDescription,
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color: Colors.grey,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    // Price
+                    Text(
+                      '\$${productPrice.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                // Product Name
-                Text(
-                  productName,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                // Product Description
-                Text(
-                  productDescription,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Color(0xFF7C7C7C),
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 6),
-                // Product Price
-                Text(
-                  '\$${productPrice.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
