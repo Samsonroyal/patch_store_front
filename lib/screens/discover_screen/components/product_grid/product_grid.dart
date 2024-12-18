@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import '../../../../model/product.dart';
 import '../product_card/product_item.dart';
-
 
 class ProductGrid extends StatelessWidget {
   final List<Product> products;
@@ -16,6 +14,7 @@ class ProductGrid extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 8.0,
         mainAxisSpacing: 8.0,
+        childAspectRatio: 0.6, 
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
