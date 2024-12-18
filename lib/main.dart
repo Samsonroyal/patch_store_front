@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'domain/cart_domain/cart_provider.dart';
+import 'domain/cart_domain/cart_service.dart';
 import 'domain/product_provider.dart';
 import 'domain/product_service.dart';
 import 'home.dart';
@@ -15,8 +17,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ProductProvider(productService: ProductService(client: http.Client())),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(
+              productService: ProductService(client: http.Client())),
+        ),
+        ChangeNotifierProvider(
+          create: (context) =>
+              CartProvider(cartService: CartService(client: http.Client())),
+        ),
+      ],
       child: MaterialApp(
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -27,5 +38,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

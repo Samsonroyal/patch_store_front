@@ -9,7 +9,8 @@ class ProductService {
   ProductService({required this.client});
 
   Future<List<Product>> fetchProducts() async {
-    final response = await client.get(Uri.parse('https://fakestoreapi.com/products?limit=50'));
+    final response = await client.get(
+        Uri.parse('https://fakestoreapi.com/products?limit=50'));
 
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
@@ -27,4 +28,9 @@ class ProductService {
     return categoriesSet.toList();
   }
 }
+
+
+
+
+
 

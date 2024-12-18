@@ -64,9 +64,11 @@ class _CategoryFilterState extends State<CategoryFilter> {
                             ? Border.all(color: Colors.green, width: 3)
                             : Border.all(color: Colors.transparent),
                       ),
-                      child: categoryImage != null ? Image.asset(categoryImage, fit: BoxFit.cover, errorBuilder: (context, error, stackTrace){
-                        return const Icon(Icons.error);
-                      },
+                      child: categoryImage != null ? ClipOval(
+                        child: Image.asset(categoryImage, fit: BoxFit.cover, errorBuilder: (context, error, stackTrace){
+                          return const Icon(Icons.error);
+                        },
+                        ),
                       ): const Icon(Icons.error)
                     ),
                   ),

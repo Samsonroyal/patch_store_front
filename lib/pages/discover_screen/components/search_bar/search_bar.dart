@@ -1,24 +1,26 @@
 
 import 'package:flutter/material.dart';
 
-class SearchBar extends StatefulWidget {
-  const SearchBar({super.key});
+class AppSearchBar extends StatefulWidget {
+  const AppSearchBar({super.key});
 
   @override
-  State<SearchBar> createState() => _SearchBarState();
+  State<AppSearchBar> createState() => _AppSearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _AppSearchBarState extends State<AppSearchBar> {
   @override
   Widget build(BuildContext context) {
     return  Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
-        padding:  const EdgeInsets.all(12) ,
+        width: MediaQuery.of(context).size.width,
+        height: 56,
+        padding:  const EdgeInsets.symmetric(horizontal: 12) ,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.grey)
+          border: Border.all(color: Colors.grey),
         ),
         child: const Row(
           children: [

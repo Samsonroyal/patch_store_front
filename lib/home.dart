@@ -31,11 +31,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF7A6EAE),
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: currentIndex,
         onTap: (value) {

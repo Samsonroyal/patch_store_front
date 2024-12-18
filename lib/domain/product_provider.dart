@@ -1,7 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:store_front/domain/product_service.dart';
-
 import '../model/product.dart';
 
 class ProductProvider with ChangeNotifier {
@@ -59,4 +58,6 @@ class ProductProvider with ChangeNotifier {
     _filteredProducts.sort((a, b) => ascending ? a.price.compareTo(b.price) : b.price.compareTo(a.price));
     notifyListeners();
   }
+
+
 }

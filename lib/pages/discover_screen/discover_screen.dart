@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_front/pages/discover_screen/components/search_bar/search_bar.dart';
 
 
 import '../../domain/product_provider.dart';
@@ -24,39 +25,59 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.all(20.0),
+    return  Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: const Color(0xFF7A6EAE),
+            title: const Text(""),
+            // flexibleSpace: const SafeArea(
+            //     child: AppSearchBar()
+            // ),
+            centerTitle: true,
+          ),
+          body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Consumer<ProductProvider>(
+                builder: (context, productProvider, _) {
+                  if(productProvider.products.isEmpty) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 15,),
+                      const Text("Choose from any category",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 10,),
+                      CategoryFilter(categories: productProvider.categories),
+                      const SizedBox(height: 10,),
+                      Text("${productProvider.products.length} products to choose from", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                      const SizedBox(height: 8,),
+                      Container(height: 60,
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12.0),
+                          child: CategoryButtonRow(),
+                        ),),
+                      const SizedBox(height: 8,),
+                      Expanded(child: ProductGrid(products: productProvider.products))
+                    ],
+                  );
+                },
+              )
+          ),
+        ),
 
-      child: Consumer<ProductProvider>(
-        builder: (context, productProvider, _) {
-          if(productProvider.products.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return  Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Choose from any category",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 10,),
-              CategoryFilter(categories: productProvider.categories),
-              const SizedBox(height: 10,),
-               Text("${productProvider.products.length} products to choose from", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-              const SizedBox(height: 8,),
-              Container(height: 60,
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 12.0),
-                child: CategoryButtonRow(),
-              ),),
-              const SizedBox(height: 8,),
-              Expanded(child: ProductGrid(products: productProvider.products))
-            ],
-          );
-        },
-      )
+        Positioned(
+          top: 50,
+            right: 16,
+            left: 16,
+            child: AppSearchBar())
+      ],
     );
   }
 }
