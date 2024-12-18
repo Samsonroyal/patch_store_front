@@ -1,26 +1,27 @@
 
 class CartItem {
-  final int id;
-  final int productId;
-  final int quantity;
-  final double price;
   final String title;
+  final double price;
+  final int quantity;
+  final int productId;
+  final String? image;
 
   CartItem({
-    required this.id,
     required this.productId,
-    required this.quantity,
-    required this.price,
     required this.title,
+    required this.price,
+    required this.quantity,
+   this.image,
   });
 
   factory CartItem.fromJson(Map<String, dynamic> json) {
     return CartItem(
-      id: json['id'],
       productId: json['productId'],
-      quantity: json['quantity'],
-      price: json['price'],
-      title: json['title'],
+      title: json['title'] ?? 'No title',
+      price: (json['price'] != null) ? double.tryParse(json['price'].toString()) ?? 0.0 : 0.0,
+      quantity: json['quantity'] ?? 0,
+      image: json['image'] as String?,
     );
   }
 }
+
